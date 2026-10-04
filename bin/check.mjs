@@ -3,7 +3,7 @@
 // declaration parser, renderer and loop check in headless Chrome, prints what
 // it found (as plain lines an AI can read) and writes PNG frames to look at.
 //
-//   node bin/check.mjs examples/rings.glsl [--out dir] [--size 540x675] [--param key=value]… [--json] [--runner path-or-url]
+//   node bin/check.mjs examples/checker.glsl [--out dir] [--size 540x675] [--param key=value]… [--json] [--runner path-or-url]
 //
 // The renderer is Postmo's own, fetched from the site (https://postmo.pages.dev/kit/runner.js,
 // or --runner / POSTMO_RUNNER) and cached, so the check always matches the live editor.

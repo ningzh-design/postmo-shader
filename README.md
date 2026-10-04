@@ -21,7 +21,7 @@ Needs [Node.js](https://nodejs.org) 20 or newer.
 git clone https://github.com/ningzh-design/postmo-shader.git
 cd postmo-shader
 npm install
-node bin/check.mjs examples/rings.glsl
+node bin/check.mjs examples/checker.glsl
 ```
 
 Then check your own file the same way: `node bin/check.mjs path/to/my-shader.glsl`.
