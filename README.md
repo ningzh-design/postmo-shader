@@ -25,6 +25,9 @@ node bin/check.mjs examples/rings.glsl
 ```
 
 Then check your own file the same way: `node bin/check.mjs path/to/my-shader.glsl`.
+It reads what Postmo reads: Postmo's own format, and Shadertoy, WebGL 1 /
+The Book of Shaders and ISF code, which Postmo converts on import (the check
+says what it changed). A shader without `// @name` is named after its file.
 
 It uses Google Chrome when installed, otherwise Playwright's Chromium
 (`npx playwright install chromium`). The renderer is Postmo's own: the check

@@ -86,7 +86,7 @@ try {
   if (!(await page.evaluate(() => typeof window.postmoCheck === 'function'))) throw new Error('The renderer did not load');
   const syntax = await page.evaluate(() => window.postmoSyntax ?? 1);
   if (syntax > KIT_SYNTAX) console.error(`Postmo now reads declaration syntax ${syntax}; this kit knows ${KIT_SYNTAX}: git pull the newest kit`);
-  result = await page.evaluate(([c, o]) => window.postmoCheck(c, o), [code, { width: +size[1], height: +size[2], params }]);
+  result = await page.evaluate(([c, o]) => window.postmoCheck(c, o), [code, { width: +size[1], height: +size[2], params, name: stem }]);
 } finally {
   await browser.close();
 }
@@ -106,7 +106,7 @@ if (json) {
   console.log(JSON.stringify({ ...result, frames: written.map(([label, path]) => ({ label, path })) }, null, 2));
 } else {
   const lines = [];
-  const from = { postmo: 'a Postmo shader', webgl1: 'WebGL 1 code (converted)', shadertoy: 'Shadertoy code (wrapped)', isf: 'ISF (not read yet)' }[result.format] ?? result.format;
+  const from = { postmo: 'a Postmo shader', webgl1: 'WebGL 1 code (converted)', shadertoy: 'Shadertoy code (wrapped)', isf: 'ISF (converted)' }[result.format] ?? result.format;
   lines.push(`${basename(file)}: "${result.name}", ${from}`);
   for (const n of result.notes) lines.push(`  import: ${n}`);
   lines.push(result.compiled ? 'OK compiles' : 'FAIL does not compile');
