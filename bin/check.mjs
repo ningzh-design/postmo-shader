@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// postmo-shader check <file.glsl>: runs a shader through Postmo's own import,
+// node bin/check.mjs <file.glsl>: runs a shader through Postmo's own import,
 // declaration parser, renderer and loop check in headless Chrome, prints what
 // it found (as plain lines an AI can read) and writes PNG frames to look at.
 //
-//   postmo-shader check rings.glsl [--out dir] [--size 540x675] [--param key=value]… [--json] [--runner path-or-url]
+//   node bin/check.mjs examples/rings.glsl [--out dir] [--size 540x675] [--param key=value]… [--json] [--runner path-or-url]
 //
 // The renderer is Postmo's own, fetched from the site (https://postmo.pages.dev/kit/runner.js,
 // or --runner / POSTMO_RUNNER) and cached, so the check always matches the live editor.
@@ -17,7 +17,7 @@ const RUNNER = 'https://postmo.pages.dev/kit/runner.js';
 const args = process.argv.slice(2);
 if (args[0] === 'check') args.shift();
 const usage = () => {
-  console.error('Usage: postmo-shader check <file.glsl> [--out dir] [--size WxH] [--param key=value]… [--json] [--runner path-or-url]');
+  console.error('Usage: node bin/check.mjs <file.glsl> [--out dir] [--size WxH] [--param key=value]… [--json] [--runner path-or-url]');
   process.exit(2);
 };
 const valued = new Set(['--out', '--size', '--param', '--runner']);
@@ -34,7 +34,7 @@ const outDir = resolve(opt('--out') ?? join('postmo-check', stem));
 let playwright;
 try { playwright = await import('playwright-core'); } catch {
   try { playwright = await import('playwright'); } catch {
-    console.error('postmo-shader needs playwright-core: npm install playwright-core');
+    console.error('postmo-shader needs playwright-core: run npm install in the postmo-shader folder');
     process.exit(2);
   }
 }
@@ -85,7 +85,7 @@ try {
   if (errors.length) throw new Error(errors.join('\n'));
   if (!(await page.evaluate(() => typeof window.postmoCheck === 'function'))) throw new Error('The renderer did not load');
   const syntax = await page.evaluate(() => window.postmoSyntax ?? 1);
-  if (syntax > KIT_SYNTAX) console.error(`Postmo now reads declaration syntax ${syntax}; this kit knows ${KIT_SYNTAX}: npm update postmo-shader`);
+  if (syntax > KIT_SYNTAX) console.error(`Postmo now reads declaration syntax ${syntax}; this kit knows ${KIT_SYNTAX}: git pull the newest kit`);
   result = await page.evaluate(([c, o]) => window.postmoCheck(c, o), [code, { width: +size[1], height: +size[2], params }]);
 } finally {
   await browser.close();

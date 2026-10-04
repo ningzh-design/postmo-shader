@@ -13,7 +13,7 @@ into Postmo, or drops the .glsl file onto its canvas.
 1. List what the picture is made of and pick at most 10 params that change it most
    (the rest are constants). Name colours by their role.
 2. Write the shader (rules below, functions in reference.md, examples in examples/).
-3. Check it: `npx postmo-shader check my-shader.glsl` (from this folder: `node bin/check.mjs my-shader.glsl`).
+3. Check it from this folder: `node bin/check.mjs my-shader.glsl` (once: `npm install`).
    It compiles the code with Postmo's own renderer, says whether it loops, whether the
    seed changes it and what a frame costs, and writes PNG frames to ./postmo-check/.
    Look at the frames.
