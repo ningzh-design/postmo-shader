@@ -5,7 +5,7 @@
 //
 //   node bin/check.mjs examples/checker.glsl [--out dir] [--size 540x675] [--param key=value]… [--json] [--runner path-or-url]
 //
-// The renderer is Postmo's own, fetched from the site (https://postmo.pages.dev/kit/runner.js,
+// The renderer is Postmo's own, fetched from the site (https://postmo.dev/kit/runner.js,
 // or --runner / POSTMO_RUNNER) and cached, so the check always matches the live editor.
 // Exit code 0 when the shader compiles, 1 when it does not, 2 on a usage error.
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
@@ -13,7 +13,7 @@ import { basename, join, resolve } from 'node:path';
 import { homedir } from 'node:os';
 
 const KIT_SYNTAX = 1;
-const RUNNER = 'https://postmo.pages.dev/kit/runner.js';
+const RUNNER = 'https://postmo.dev/kit/runner.js';
 const args = process.argv.slice(2);
 if (args[0] === 'check') args.shift();
 const usage = () => {

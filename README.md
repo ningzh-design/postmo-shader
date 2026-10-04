@@ -1,6 +1,6 @@
 # postmo-shader
 
-Write shaders for [Postmo](https://postmo.pages.dev) with an AI.
+Write shaders for [Postmo](https://postmo.dev) with an AI.
 
 - `SKILL.md`: an Agent Skill (Claude Code, Claude.ai and other tools that read skills).
   Put this folder in your skills directory, or point your tool at it.
@@ -31,7 +31,7 @@ says what it changed). A shader without `// @name` is named after its file.
 
 It uses Google Chrome when installed, otherwise Playwright's Chromium
 (`npx playwright install chromium`). The renderer is Postmo's own: the check
-downloads it from `https://postmo.pages.dev/kit/runner.js` and caches it in
+downloads it from `https://postmo.dev/kit/runner.js` and caches it in
 `~/.cache/postmo-shader/`, so it always matches the live editor and works
 offline after the first run. It is Postmo's code, not part of this repository
 or its licence.
