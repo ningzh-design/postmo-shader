@@ -1,0 +1,41 @@
+{
+  "name": "postmo-shader",
+  "version": "1.0.0",
+  "description": "Write shaders for Postmo with an AI: the rules, the functions, examples, and a check that compiles, renders and loop-tests a shader with Postmo's own renderer (fetched from the site).",
+  "type": "module",
+  "license": "MIT",
+  "author": "Ning Zhang",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ningzh-design/postmo-shader.git"
+  },
+  "homepage": "https://github.com/ningzh-design/postmo-shader#readme",
+  "bugs": {
+    "url": "https://github.com/ningzh-design/postmo-shader/issues"
+  },
+  "bin": {
+    "postmo-shader": "bin/check.mjs"
+  },
+  "files": [
+    "bin",
+    "SKILL.md",
+    "reference.md",
+    "postmo-shader.txt",
+    "examples",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "playwright-core": "^1.50.0"
+  },
+  "keywords": [
+    "postmo",
+    "glsl",
+    "shader",
+    "skill",
+    "ai"
+  ]
+}
