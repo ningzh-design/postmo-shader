@@ -2,12 +2,18 @@
 
 Write shaders for [Postmo](https://postmo.dev) with an AI.
 
+The full guide, for people and AIs alike: [postmo.dev/shaders](https://postmo.dev/shaders/).
+
+| Checker | Flow | Tiles | Ripple | Drift |
+| --- | --- | --- | --- | --- |
+| ![Checker](examples/checker.png) | ![Flow](examples/flow.png) | ![Tiles](examples/tiles.png) | ![Ripple](examples/ripple.png) | ![Drift](examples/drift.png) |
+
 - `SKILL.md`: an Agent Skill (Claude Code, Claude.ai and other tools that read skills).
   Put this folder in your skills directory, or point your tool at it.
 - `postmo-shader.txt`: the same rules as plain text, to paste into any AI chat.
   (Postmo's code window has it too: name menu → Copy AI instructions.)
 - `reference.md`: every uniform and function Postmo gives a shader.
-- `examples/`: shaders that loop (Rings, Flow, Tiles, Ripple) and one that plays over time (Drift).
+- `examples/`: shaders that loop (Checker, Flow, Tiles, Ripple) and one that plays over time (Drift), each with its first frame as a PNG.
 - `bin/check.mjs`: compiles a shader with Postmo's own renderer in headless
   Chrome and reports what Postmo would say: errors by line, params and colours,
   whether it loops, whether the seed changes it, what a frame costs. It writes
@@ -25,6 +31,8 @@ node bin/check.mjs examples/checker.glsl
 ```
 
 Then check your own file the same way: `node bin/check.mjs path/to/my-shader.glsl`.
+When it compiles and loops (or plays over time on purpose), the last line says
+`Ready: drag my-shader.glsl onto https://postmo.dev`.
 It reads what Postmo reads: Postmo's own format, and Shadertoy, WebGL 1 /
 The Book of Shaders and ISF code, which Postmo converts on import (the check
 says what it changed). A shader without `// @name` is named after its file.

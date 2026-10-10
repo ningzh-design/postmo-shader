@@ -9,7 +9,7 @@
 // or --runner / POSTMO_RUNNER) and cached, so the check always matches the live editor.
 // Exit code 0 when the shader compiles, 1 when it does not, 2 on a usage error.
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
-import { basename, join, resolve } from 'node:path';
+import { basename, join, relative, resolve } from 'node:path';
 import { homedir } from 'node:os';
 
 const KIT_SYNTAX = 1;
@@ -126,6 +126,8 @@ if (json) {
   }
   for (const a of result.advice) lines.push(`  advice${a.line ? ` line ${a.line}` : ''}: ${a.message}`);
   for (const [label, path] of written) lines.push(`frame ${label}: ${path}`);
+  // Where it goes next, once it compiles and loops (or means to play over time).
+  if (result.compiled && result.loop !== 'jumps') lines.push(`Ready: drag ${relative(process.cwd(), resolve(file)) || basename(file)} onto https://postmo.dev`);
   console.log(lines.join('\n'));
 }
 process.exit(result.compiled ? 0 : 1);
